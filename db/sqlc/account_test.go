@@ -3,7 +3,6 @@ package db
 import (
 	"context"
 	"database/sql"
-	"example.com/simplebank/util"
 	"fmt"
 	"github.com/stretchr/testify/require"
 	"log"
@@ -13,7 +12,7 @@ import (
 // return lastInsertId
 func createRandomAccount(t *testing.T) int64 {
 	params := CreateAccountParams{
-		Owner:    util.RandomOwner() ,
+		Owner:    util.randomowner()
 		Balance:  util.RandomMoney(),
 		Currency: util.RandomCurrency(),
 	}
