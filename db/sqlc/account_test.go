@@ -70,7 +70,7 @@ func TestDeleteAccount(t *testing.T)  {
 	if err != nil {
 		log.Fatal("Get account error: ", err)
 	}
-	fmt.Printf("%v\n",account)
+	fmt.Printf("Insert new account: %v\n",account)
 
 	fmt.Println("Begin delete Account where id =", account.ID)
 
@@ -78,9 +78,8 @@ func TestDeleteAccount(t *testing.T)  {
 
 	account, err = testQueries.GetAccount(context.Background(), lastInsertId)
 	if err != nil && err == sql.ErrNoRows {
-		log.Fatal("No such row ",err)
+		fmt.Println("Delete Account Success")
 	}
-	fmt.Println(account)
 }
 
 func TestListAccounts(t *testing.T)  {
