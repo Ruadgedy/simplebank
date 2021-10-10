@@ -9,4 +9,3 @@ require (
 	golang.org/x/tools v0.1.7
 )
 
-replace example.com/simplebank/util => ../simplebank/db/util
