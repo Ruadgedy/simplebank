@@ -11,6 +11,14 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: passwd
+          MYSQL_DATABASE: bank
+
     steps:
       - uses: actions/checkout@v2
 
@@ -21,6 +29,9 @@ jobs:
 
       - name: Build
         run: go build -v ./...
+
+      - name: Run migration
+        run make migrateup
 
       - name: Test
         run: make test
