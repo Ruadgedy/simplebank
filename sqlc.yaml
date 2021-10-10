@@ -1,12 +1,13 @@
 version: "1"
 packages:
-  - name: "db"
-    path: "./db/sqlc"
-    queries: "./db/query/"
-    schema: "./db/migration/"
-    engine: "mysql"
+  - name: "db"  # The package name to use for the generated code
+    path: "./db/sqlc" # Output directory for generated code
+    queries: "./db/query/"  # Directory of SQL queries or path to single SQL file; or a list of paths
+    schema: "./db/migration/" # Directory of SQL migrations or path to single SQL file; or a list of paths
+    engine: "mysql" # Either postgresql or mysql. Defaults to postgresql
     emit_json_tags: true   # model字段添加tag标签
-    emit_prepared_queries: false  #
-    emit_interface: false
+    emit_prepared_queries: false  # 是否支持prepared queries
+    emit_interface: false # If true, output a Querier interface in the generated package.
     emit_exact_table_names: false # model对象变为非复数形式
+    emit_empty_slices: true  # 返回的空集合不再是nil，而是包含零个元素的集合
 

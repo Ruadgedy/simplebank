@@ -1,0 +1,13 @@
+### send POST req accounts
+POST http://127.0.0.1:8080/accounts
+Content-Type: application/json
+
+{
+  "owner": "YH",
+  "currency": "USD"
+}
+
+### GET account by id
+GET http://127.0.0.1:8080/accounts/1
+
+###

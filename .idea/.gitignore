@@ -7,3 +7,5 @@
 
 # CodeStream ignored files
 /codestream.xml
+# Editor-based HTTP Client requests
+/httpRequests/

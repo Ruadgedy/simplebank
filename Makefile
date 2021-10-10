@@ -13,4 +13,7 @@ sqlc:
 test:
 	go test -v -cover ./...  # 执行所有包下面的测试
 
-.PHONY: mysql migrateup migratedown sqlc test
+server:
+	go run main.go
+
+.PHONY: mysql migrateup migratedown sqlc test server
