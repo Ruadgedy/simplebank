@@ -19,7 +19,7 @@ jobs:
           MYSQL_ROOT_PASSWORD: passwd
           MYSQL_DATABASE: bank
         ports:
-          - 3306:3307
+          - 3307:3306
 
     steps:
       - uses: actions/checkout@v2
