@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"testing"
+	"time"
 )
 
 var testQueries *Queries
@@ -22,6 +23,7 @@ func TestMain(m *testing.M) {
 	if err != nil {
 		log.Fatal("can not connect to database: ",err)
 	}
+	testDB.SetConnMaxLifetime(time.Minute * 10)
 	defer testDB.Close()
 	if err = testDB.Ping(); err!=nil {
 		log.Fatalln("Open database connection failed: ", err)
