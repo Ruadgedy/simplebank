@@ -2,8 +2,8 @@ package db
 
 import (
 	"context"
-	"example.com/simplebank/util"
 	"fmt"
+	"github.com/Ruadgedy/simplebank/util"
 	"log"
 	"testing"
 )

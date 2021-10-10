@@ -2,7 +2,7 @@ package db
 
 import (
 	"context"
-	"example.com/simplebank/util"
+	"github.com/Ruadgedy/simplebank/util"
 	"log"
 	"testing"
 )
