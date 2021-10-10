@@ -18,7 +18,7 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: passwd
           MYSQL_DATABASE: bank
-        portS:
+        ports:
           - 3306:3307
 
     steps:
