@@ -16,4 +16,9 @@ test:
 server:
 	go run main.go
 
-.PHONY: mysql migrateup migratedown sqlc test server
+# mock会生成数据库mock
+mock:
+	mockgen -package mockdb -destination db/mock/store.go github.com/Ruadgedy/simplebank/db/sqlc Store
+
+
+.PHONY: mysql migrateup migratedown sqlc test server mock
