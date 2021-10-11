@@ -14,7 +14,7 @@ CREATE TABLE `entries` (
 );
 
 CREATE TABLE `transfers` (
-                             `id` bigint PRIMARY KEY,
+                             `id` bigint PRIMARY KEY auto_increment,
                              `from_account_id` bigint NOT NULL,
                              `to_account_id` bigint NOT NULL,
                              `amount` bigint NOT NULL,
