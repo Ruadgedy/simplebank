@@ -4,8 +4,15 @@ mysql:
 migrateup:
 	 migrate -path db/migration -database "mysql://root:passwd@tcp(localhost:3307)/bank?parseTime=true&net_write_timeout=6000" -verbose up
 
+migrateup1:
+	 migrate -path db/migration -database "mysql://root:passwd@tcp(localhost:3307)/bank?parseTime=true&net_write_timeout=6000" -verbose up 1
+
+
 migratedown:
 	migrate -path db/migration -database "mysql://root:passwd@tcp(localhost:3307)/bank" -verbose down
+
+migratedown1:
+	migrate -path db/migration -database "mysql://root:passwd@tcp(localhost:3307)/bank" -verbose down 1
 
 sqlc:
 	sqlc generate
@@ -21,4 +28,4 @@ mock:
 	mockgen -package mockdb -destination db/mock/store.go github.com/Ruadgedy/simplebank/db/sqlc Store
 
 
-.PHONY: mysql migrateup migratedown sqlc test server mock
+.PHONY: mysql migrateup migratedown sqlc test server mock migratedown1 migrateup1
