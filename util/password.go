@@ -9,12 +9,12 @@ import (
 func HashedPassword(password string) (string, error) {
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	if err != nil {
-		return "",fmt.Errorf("failed to hash password: %v", err)
+		return "", fmt.Errorf("failed to hash password: %v", err)
 	}
-	return string(hashedPassword),nil
+	return string(hashedPassword), nil
 }
 
 // CheckPassword checks if the provided password is correct or not.
-func CheckPassword(password,hashedPassword string) error {
-	return bcrypt.CompareHashAndPassword([]byte(hashedPassword),[]byte(password))
+func CheckPassword(password, hashedPassword string) error {
+	return bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(password))
 }

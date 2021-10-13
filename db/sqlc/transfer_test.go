@@ -8,7 +8,7 @@ import (
 )
 
 // return last transfer id
-func createRandomTransfer(t *testing.T,account1,account2 Account) int64 {
+func createRandomTransfer(t *testing.T, account1, account2 Account) int64 {
 	result, err := testQueries.CreateTransfer(context.Background(), CreateTransferParams{
 		FromAccountID: account1.ID,
 		ToAccountID:   account2.ID,

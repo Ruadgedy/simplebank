@@ -9,7 +9,7 @@ import (
 )
 
 // return last inserted entry id
-func createRandomEntry(t *testing.T,account Account) int64{
+func createRandomEntry(t *testing.T, account Account) int64 {
 	arg := CreateEntryParams{
 		AccountID: account.ID,
 		Amount:    util.RandomMoney(),
@@ -19,20 +19,20 @@ func createRandomEntry(t *testing.T,account Account) int64{
 		log.Fatal("Create Entry failed: ", err)
 	}
 	lastInsertId, _ := result.LastInsertId()
-	fmt.Println("LastInsertId: ",lastInsertId)
+	fmt.Println("LastInsertId: ", lastInsertId)
 	return lastInsertId
 }
 
-func TestCreateEntry(t *testing.T)  {
+func TestCreateEntry(t *testing.T) {
 	lastInsertId := createRandomAccount(t)
 	account, err := testQueries.GetAccount(context.Background(), lastInsertId)
 	if err != nil {
 		log.Fatalln(err)
 	}
-	createRandomEntry(t,account)
+	createRandomEntry(t, account)
 }
 
-func TestGetEntry(t *testing.T)  {
+func TestGetEntry(t *testing.T) {
 	lastInsertId := createRandomAccount(t)
 	account, _ := testQueries.GetAccount(context.Background(), lastInsertId)
 	lastEntryId := createRandomEntry(t, account)
@@ -43,7 +43,7 @@ func TestGetEntry(t *testing.T)  {
 	fmt.Println(entry)
 }
 
-func TestListEntries(t *testing.T)  {
+func TestListEntries(t *testing.T) {
 	lastInsertId := createRandomAccount(t)
 	account, err := testQueries.GetAccount(context.Background(), lastInsertId)
 	if err != nil {

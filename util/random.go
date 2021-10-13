@@ -11,12 +11,12 @@ const (
 	alphabet = "abcdefghijklmnopqrstuvwxyz"
 )
 
-func init()  {
+func init() {
 	rand.Seed(time.Now().UnixNano())
 }
 
 // generate a random integer between min and max
-func RandomInt(min,max int64) int64 {
+func RandomInt(min, max int64) int64 {
 	return min + rand.Int63n(max-min+1)
 }
 
@@ -34,18 +34,18 @@ func RandomString(n int) string {
 }
 
 // generate a random owner name
-func RandomOwner() string{
+func RandomOwner() string {
 	return RandomString(6)
 }
 
 // generate a random amount of money
-func RandomMoney() int64{
-	return RandomInt(0,10000)
+func RandomMoney() int64 {
+	return RandomInt(0, 10000)
 }
 
 // generate a random currency code
-func RandomCurrency() string  {
-	currencies := []string{"EUR","USD","CAD"}
+func RandomCurrency() string {
+	currencies := []string{"EUR", "USD", "CAD"}
 	n := len(currencies)
 	return currencies[rand.Intn(n)]
 }

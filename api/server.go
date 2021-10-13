@@ -20,15 +20,17 @@ func NewServer(store db.Store) *Server {
 	}
 	router := gin.Default()
 
-	if v,ok := binding.Validator.Engine().(*validator.Validate); ok{
-		v.RegisterValidation("currency",validCurrency)
+	if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
+		v.RegisterValidation("currency", validCurrency)
 	}
 
 	// add routes to router
+	router.POST("/users", server.createUser)
+
 	router.POST("/accounts", server.createAccount)
-	router.GET("/accounts/:id",server.getAccount)
-	router.GET("/accounts",server.listAccount)
-	router.POST("/transfers",server.createTransfer)
+	router.GET("/accounts/:id", server.getAccount)
+	router.GET("/accounts", server.listAccount)
+	router.POST("/transfers", server.createTransfer)
 
 	server.router = router
 	return server
@@ -42,5 +44,3 @@ func errorResponse(err error) gin.H {
 func (server *Server) Start(address string) error {
 	return server.router.Run(address)
 }
-
-

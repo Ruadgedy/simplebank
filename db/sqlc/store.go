@@ -57,15 +57,14 @@ type TransferTxParams struct {
 
 //TransferResult is the result of the transfer transaction.
 type TransferTxResult struct {
-	Transfer Transfer `json:"transfer"`
-	FromAccount Account `json:"from_account"`
-	ToAccount Account `json:"to_account"`
-	FromEntry Entry `json:"from_entry"`
-	ToEntry Entry `json:"to_entry"`
+	Transfer    Transfer `json:"transfer"`
+	FromAccount Account  `json:"from_account"`
+	ToAccount   Account  `json:"to_account"`
+	FromEntry   Entry    `json:"from_entry"`
+	ToEntry     Entry    `json:"to_entry"`
 }
 
 var txKey = struct {
-
 }{}
 
 // TransferTx performs a money transfer from one account to the other.
