@@ -35,14 +35,16 @@ func NewServer(config util.Config,store db.Store) (*Server, error) {
 		v.RegisterValidation("currency", validCurrency)
 	}
 
-	// add routes to router
+	// 下面的接口不用认证
 	router.POST("/users", server.createUser)
 	router.POST("/users/login",server.loginUser)
 
-	router.POST("/accounts", server.createAccount)
-	router.GET("/accounts/:id", server.getAccount)
-	router.GET("/accounts", server.listAccount)
-	router.POST("/transfers", server.createTransfer)
+	// 生成新的router group，在这个group中的请求都需要认证
+	authRoute := router.Group("/").Use(authMiddleware(server.tokenMaker))
+	authRoute.POST("/accounts", server.createAccount)
+	authRoute.GET("/accounts/:id", server.getAccount)
+	authRoute.GET("/accounts", server.listAccount)
+	authRoute.POST("/transfers", server.createTransfer)
 
 	server.router = router
 	return server, nil
