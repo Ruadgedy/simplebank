@@ -84,6 +84,7 @@ func TestDeleteAccount(t *testing.T) {
 
 func TestListAccounts(t *testing.T) {
 	accounts, err := testQueries.ListAccounts(context.Background(), ListAccountsParams{
+		Owner: "fyh",
 		Limit:  10,
 		Offset: 0,
 	})

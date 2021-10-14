@@ -2,7 +2,9 @@ package api
 
 import (
 	"database/sql"
+	"errors"
 	db "github.com/Ruadgedy/simplebank/db/sqlc"
+	"github.com/Ruadgedy/simplebank/token"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -19,8 +21,10 @@ func (server *Server) createAccount(ctx *gin.Context) {
 		return
 	}
 
+	authPayload := ctx.MustGet(authorizationPayloadKey).(*token.Payload)
+
 	arg := db.CreateAccountParams{
-		Owner:    req.Owner,
+		Owner:    authPayload.Username,
 		Balance:  0,
 		Currency: req.Currency,
 	}
@@ -58,6 +62,14 @@ func (server *Server) getAccount(ctx *gin.Context) {
 			return
 		}
 		ctx.JSON(http.StatusBadRequest, errorResponse(err))
+		return
+	}
+
+	// 验证用户只能查询自身的信息
+	authPayload := ctx.MustGet(authorizationPayloadKey).(*token.Payload)
+	if account.Owner != authPayload.Username {
+		errors.New("account doesn't belong to authenticated user")
+		ctx.JSON(http.StatusUnauthorized,errorResponse(err))
 		return
 	}
 

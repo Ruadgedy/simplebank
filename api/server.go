@@ -15,7 +15,7 @@ type Server struct {
 	config util.Config
 	store  db.Store
 	tokenMaker token.Maker
-	router *gin.Engine
+	router *gin.Engine  // 加入router的目的是能在main文件中以特定端口形式启动server
 }
 
 // NewServer creates a new HTTP server and setup routing.
@@ -37,6 +37,7 @@ func NewServer(config util.Config,store db.Store) (*Server, error) {
 
 	// add routes to router
 	router.POST("/users", server.createUser)
+	router.POST("/users/login",server.loginUser)
 
 	router.POST("/accounts", server.createAccount)
 	router.GET("/accounts/:id", server.getAccount)
