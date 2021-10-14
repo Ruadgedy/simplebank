@@ -21,7 +21,7 @@ func LoadConfig(path string) (config Config, err error) {
 	viper.SetConfigName("app") // 设置配置文件名称  `不包含拓展名`
 	viper.SetConfigType("env") // 设置配置文件类型，可以是json、xml
 
-	viper.AutomaticEnv() // 读取环境变量的值，并且用config中的值覆盖
+	viper.AutomaticEnv() // 读取环境变量的值，用来覆盖config中的值
 	err = viper.ReadInConfig()
 	if err != nil {
 		return
